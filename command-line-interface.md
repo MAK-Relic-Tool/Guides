@@ -106,6 +106,24 @@ optional arguments:
 #### Sample
 ```json
 {
+  "data": {
+	  "solvers": [
+		{
+		   "match": "*.*",
+		   "storage": "stream",     
+                   "query": "size >= 1000000000"
+		},
+		{
+		   "match": "*.*",
+		   "storage": "store",
+		}
+	  ]
+  }
+}
+```
+#### Feature Example
+```json
+{
   "test": {
 	  "solvers": [
       {
@@ -133,7 +151,7 @@ optional arguments:
 		{
 		   "match": "*.*",
 		   "storage": "stream",     
-       "query": "size >= 1000000000"
+                   "query": "size >= 1000000000"
 		},
 		{
 		   "match": "*.*",
@@ -158,27 +176,38 @@ optional arguments:
 
 ##### Drive Name
 `"test": {...}` and `"data": {...}`defines the drive that the files will be packed into. 
+
 Typically this will be `"data"` or `"attrib"`.
 
 ##### Drive Path
 `path` specifies the relative path from the `src_dir` specified when the command is called.
+
 Files will be searched from the relative path instead of the `src_dir`.
 
 ##### Filtering with `match`
 `match` is a standard glob filter.
+
 `store.*` will grab any file that is named `store`, ignoring the extension.
+
 `*.buffer` will grab any file with a `.buffer`  extension.
+
 `stream.txt` will only grab files named `stream.txt`.
+
 `*.*` will grab all files with a name and an extension.
+
 `*` will grab all files, even those without extensions.
 
 ##### Filtering with `query`
-Large files can be packed differently from small files via `query`
+Large files can be packed differently from small files via `query`.
+
 `query` supports any python expression, with `size` being the size of the file.
+
 `size < 1000000000` will only include the file if it is less than 1 GigaByte.
+
 
 ##### Compressing Files
 `"storage": ...` specifies how the file is packed. If omitted, `"store"` is used by default.
+
 Options are:
 * `"store"` :  File is not compressed.
 * `"stream"` : File is zlib-compressed and marked for stream-decompression.
