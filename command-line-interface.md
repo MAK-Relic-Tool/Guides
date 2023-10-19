@@ -184,7 +184,9 @@ optional arguments:
 Typically this will be `"data"` or `"attrib"`.
 
 ##### Drive Name
-`"name": "..."` defines the name of the drive, which will show up when viewing assets from a modding tool. 
+`"name": "..."` defines the name of the drive, which will show up when viewing assets from a modding tool.
+
+Due to format limitations, this cannot be more than 64 characters, and does not support non-ascii characters.
 
 
 ##### Drive Path
