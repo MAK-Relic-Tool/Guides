@@ -107,17 +107,18 @@ optional arguments:
 ```json
 {
   "data": {
-	  "solvers": [
-		{
-		   "match": "*.*",
-		   "storage": "stream",     
-                   "query": "size >= 1000000000"
-		},
-		{
-		   "match": "*.*",
-		   "storage": "store",
-		}
-	  ]
+    "name": "example name",
+    "solvers": [
+      {
+        "match": "*.*",
+        "storage": "stream",
+        "query": "size >= 1000000000"
+      },
+      {
+        "match": "*.*",
+        "storage": "store"
+      }
+    ]
   }
 }
 ```
@@ -125,7 +126,8 @@ optional arguments:
 ```json
 {
   "test": {
-	  "solvers": [
+    "name": "example",
+    "solvers": [
       {
         "match": "store.*",
         "storage": "store"
@@ -140,33 +142,35 @@ optional arguments:
       },
       {
         "match": "*.*",
-        "storage": "store",        
+        "storage": "store",
         "query": "size > 0"
       }
     ]
   },
   "data": {
-	  "path": "mymodata",
-	  "solvers": [
-		{
-		   "match": "*.*",
-		   "storage": "stream",     
-                   "query": "size >= 1000000000"
-		},
-		{
-		   "match": "*.*",
-		   "storage": "store",
-		}
-	  ]
-  }
+    "name": "pretty name for data",
+    "path": "mymodata",
+    "solvers": [
+      {
+        "match": "*.*",
+        "storage": "stream",
+        "query": "size >= 1000000000"
+      },
+      {
+        "match": "*.*",
+        "storage": "store"
+      }
+    ]
+  },
   "attrib": {
-	  "path": "mymodattributes",
-	  "solvers": [
-		{
-		   "match": "*.*",
-		   "storage": "store",
-		}
-	  ]
+    "name": "pretty name for attrib",
+    "path": "mymodattributes",
+    "solvers": [
+      {
+        "match": "*.*",
+        "storage": "store"
+      }
+    ]
   }
 }
 ```
@@ -174,10 +178,14 @@ optional arguments:
 ##### Solvers
 `solvers` are how files are selected to be packed, they are executed *IN ORDER*. If a file has already been packed into the drive, it is ignored by following solvers.
 
-##### Drive Name
-`"test": {...}` and `"data": {...}`defines the drive that the files will be packed into. 
+##### Drive Alias
+`"test": {...}` and `"data": {...}`defines the type of drive that the files will be packed into. 
 
 Typically this will be `"data"` or `"attrib"`.
+
+##### Drive Name
+`"name": "..."` defines the name of the drive, which will show up when viewing assets from a modding tool. 
+
 
 ##### Drive Path
 `path` specifies the relative path from the `src_dir` specified when the command is called.
